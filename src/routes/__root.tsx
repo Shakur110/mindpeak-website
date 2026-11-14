@@ -14,26 +14,32 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { BackToTop } from "@/components/site/BackToTop";
+import { Button } from "@/components/ui/button";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
+    <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden px-5 pt-24">
+      <div className="grid-lines absolute inset-0" />
+      <div className="glow-orb left-1/4 top-1/4 h-80 w-80 bg-primary/30" />
+      <div className="glow-orb bottom-10 right-1/4 h-72 w-72 bg-violet/25" />
+      <div className="relative max-w-lg text-center animate-reveal">
+        <p className="eyebrow">Error 404</p>
+        <h1 className="mt-4 font-display text-8xl font-semibold text-gradient md:text-9xl">404</h1>
+        <h2 className="mt-4 text-2xl font-semibold">This page took a wrong turn.</h2>
+        <p className="mt-3 text-muted-foreground">
           The page you're looking for doesn't exist or has been moved.
         </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
+        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+          <Button asChild variant="hero" size="xl">
+            <Link to="/">Back to home</Link>
+          </Button>
+          <Button asChild variant="glass" size="xl">
+            <Link to="/services">Explore services</Link>
+          </Button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -82,15 +88,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     // twitter:image here: every page without its own would inherit the root's preview image.
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
+      { name: "theme-color", content: "#0b1020" },
       { title: "Mindpeak Digital — Digital Solutions Agency" },
-      { name: "description", content: "Web development, AI video, automation, e-learning, marketing and branding from one multidisciplinary team." },
+      {
+        name: "description",
+        content:
+          "Web development, AI video, automation, e-learning, marketing and branding from one multidisciplinary team.",
+      },
       { name: "author", content: "Mindpeak Digital" },
       { property: "og:title", content: "Mindpeak Digital — Digital Solutions Agency" },
-      { property: "og:description", content: "Web development, AI video, automation, e-learning, marketing and branding from one multidisciplinary team." },
+      {
+        property: "og:description",
+        content:
+          "Web development, AI video, automation, e-learning, marketing and branding from one multidisciplinary team.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-          ],
+    ],
     links: [
       {
         rel: "stylesheet",
@@ -99,7 +114,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -129,8 +147,11 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Header />
-      <main><Outlet /></main>
+      <main id="main" tabIndex={-1} className="outline-none">
+        <Outlet />
+      </main>
       <Footer />
+      <BackToTop />
     </QueryClientProvider>
   );
 }
