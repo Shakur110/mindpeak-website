@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Eye, Target } from "lucide-react";
+import { ArrowRight, Check, Eye, Target, User } from "lucide-react";
 import { PageHero, Reveal, SectionHeading, CtaBand } from "@/components/site/ui";
-import { services, whyUs, meta } from "@/lib/content";
+import { services, whyUs, roles, meta } from "@/lib/content";
 import studio from "@/assets/studio.jpg";
 
 export const Route = createFileRoute("/about")({
@@ -136,6 +136,72 @@ function About() {
               );
             })}
           </div>
+        </div>
+      </section>
+      <section id="roles" className="mx-auto max-w-7xl px-5 section-y lg:px-8">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <SectionHeading
+            eyebrow="Roles"
+            title="The roles behind every project."
+            copy="Each project is handled by the right specialist, working together as one connected team."
+          />
+          <Link
+            to="/team"
+            className="group inline-flex items-center gap-2 self-start font-semibold hover:text-primary md:self-auto"
+          >
+            Meet the team{" "}
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
+        {/* Swipeable row on phones, grid on larger screens */}
+        <div className="no-scrollbar -mx-5 mt-10 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 md:mt-12 md:gap-5 lg:grid-cols-4">
+          {roles.map((r, i) => (
+            <Reveal
+              key={r.title}
+              delay={(i % 4) * 80}
+              className="card-glow group flex h-full w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl transition-transform duration-500 hover:-translate-y-1 sm:w-auto"
+            >
+              <div className="relative grid aspect-[4/3] place-items-center overflow-hidden bg-background-2">
+                {r.photo ? (
+                  <img
+                    src={r.photo}
+                    alt={r.name ? `${r.name}, ${r.title}` : r.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                ) : (
+                  <>
+                    <div className="grid-lines absolute inset-0 opacity-60" />
+                    <div className="glow-orb h-32 w-32 bg-primary/25 transition-colors group-hover:bg-violet/30" />
+                    <span className="glass relative grid h-16 w-16 place-items-center rounded-full">
+                      <User className="h-7 w-7 text-muted-foreground" />
+                    </span>
+                    <span className="absolute bottom-3 right-3 rounded-full bg-background/60 px-2.5 py-1 text-[0.65rem] uppercase tracking-[0.18em] text-muted-foreground">
+                      Photo coming soon
+                    </span>
+                  </>
+                )}
+                <span className="glass absolute left-3 top-3 rounded-full px-2.5 py-1 text-xs">
+                  {r.department}
+                </span>
+              </div>
+              <div className="flex flex-1 flex-col p-5 md:p-6">
+                <h3 className="text-lg font-semibold leading-snug">{r.title}</h3>
+                {r.name && <p className="text-sm text-primary">{r.name}</p>}
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{r.summary}</p>
+                <ul className="mt-4 space-y-2 border-t border-border pt-4">
+                  {r.responsibilities.map((t) => (
+                    <li key={t} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                      <span className="mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full bg-primary/15 text-primary">
+                        <Check className="h-2.5 w-2.5" />
+                      </span>
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-5 section-y lg:px-8">

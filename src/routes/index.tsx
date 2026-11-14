@@ -241,7 +241,7 @@ function Index() {
           </Button>
         </div>
         {/* Swipeable on phones, grid on larger screens */}
-        <div className="no-scrollbar -mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:mt-12 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0">
+        <div className="no-scrollbar -mx-5 mt-10 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:mt-12 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0">
           {posts.slice(0, 3).map((p, i) => (
             <div key={p.slug} className="w-[85%] shrink-0 snap-start md:w-auto">
               <PostCard p={p} i={i} />

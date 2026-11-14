@@ -437,6 +437,84 @@ export const team: TeamMember[] = [
   },
 ];
 
+export type Role = {
+  title: string;
+  department: string;
+  summary: string;
+  responsibilities: string[];
+  name?: string; // Person in this role — leave empty to show "Position".
+  photo?: string; // Image URL, e.g. imported from src/assets. Empty shows a placeholder.
+};
+
+// Roles shown on the About page. Placeholder images are used until a photo is added.
+export const roles: Role[] = [
+  {
+    title: "Founder & Creative Director",
+    department: "Leadership",
+    summary:
+      "Sets the vision, leads client strategy and keeps every project connected across teams.",
+    responsibilities: [
+      "Client strategy & discovery",
+      "Creative direction",
+      "Quality across every delivery",
+    ],
+  },
+  {
+    title: "Lead Web Developer",
+    department: "Web Development",
+    summary: "Designs and builds fast, mobile-friendly websites, stores and landing pages.",
+    responsibilities: [
+      "WordPress, Wix & Shopify builds",
+      "Performance & SEO setup",
+      "Site maintenance",
+    ],
+  },
+  {
+    title: "AI Video Producer",
+    department: "AI & Video",
+    summary: "Combines AI tools and storytelling to produce ads, promos and social video.",
+    responsibilities: [
+      "AI video & avatar production",
+      "Editing for social platforms",
+      "Product promo videos",
+    ],
+  },
+  {
+    title: "Automation & CRM Specialist",
+    department: "Automation & CRM",
+    summary: "Connects tools and automates repetitive work so teams can focus on customers.",
+    responsibilities: ["CRM setup & pipelines", "Workflow automation", "AI agents & integrations"],
+  },
+  {
+    title: "E-learning Specialist",
+    department: "E-learning",
+    summary: "Turns expertise into online courses with smooth enrolment and onboarding.",
+    responsibilities: ["Course platform setup", "Membership sites", "Student onboarding flows"],
+  },
+  {
+    title: "Digital Marketing Strategist",
+    department: "Digital Marketing",
+    summary: "Plans campaigns that attract the right audience and turn interest into leads.",
+    responsibilities: [
+      "Email & newsletter marketing",
+      "Social media management",
+      "Lead generation",
+    ],
+  },
+  {
+    title: "Brand & Graphic Designer",
+    department: "Creative Design",
+    summary: "Creates identities and visuals that make brands memorable and consistent.",
+    responsibilities: ["Brand identity", "Marketing creatives", "Presentation design"],
+  },
+  {
+    title: "Project Manager",
+    department: "Client Success",
+    summary: "Keeps projects on schedule and clients informed from kickoff to launch.",
+    responsibilities: ["Timelines & coordination", "Client communication", "Post-launch support"],
+  },
+];
+
 export const whyUs = [
   {
     n: "01",
